@@ -1,0 +1,1867 @@
+[
+  {
+    "id": "two-sum",
+    "title": "Two Sum",
+    "problemStatement": "Given an array of integers <code>nums</code> and an integer <code>target</code>, return <em>indices of the two numbers such that they add up to</em> <code>target</code>.</p><p class='mt-3'>You may assume that each input would have <strong>exactly one solution</strong>, and youmay not use thesame element twice.<p class='mt-3'>You can return the answer in any order.</p>",
+    "examples": [
+      {
+        "id": 0,
+        "inputText": "nums = [2,7,11,15], target = 9",
+        "outputText": "[0,1]",
+        "explanation": "Because nums[0] + nums[1] == 9, we return [0, 1]."
+      },
+      {
+        "id": 1,
+        "inputText": "nums = [3,2,4], target = 6",
+        "outputText": "[1,2]",
+        "explanation": "Because nums[1] + nums[2] == 6, we return [1, 2]."
+      },
+      {
+        "id": 2,
+        "inputText": " nums = [3,3], target = 6",
+        "outputText": "[0,1]"
+      }
+    ],
+    "constraints": "<li class='mt-2'><code>2 ≤ nums.length ≤ 10</code></li> <li class='mt-2'><code>-10 ≤ nums[i] ≤ 10</code></li> <li class='mt-2'><code>-10 ≤ target ≤ 10</code></li><li class='mt-2 text-sm'><strong>Only one valid answer exists.</strong></li>",
+    "difficulty": "Easy",
+    "category": "Array",
+    "order": 1,
+    "videoId": "8-k1C6ehKuw",
+    "starterCode": "import sys\nimport ast\n\ndef two_sum(nums, target):\n  ''' Write Your Code '''\n\n\nif __name__ == \"__main__\":\n  if len(sys.argv) > 1:\n    # Parse command-line arguments as lists\n    arg_lists = [ast.literal_eval(arg) for arg in sys.argv[1:]]\n        \n    for arg_list in arg_lists:\n      nums, target = arg_list\n      nums = [int(num) for num in nums]  # Convert string representation of numbers to integers\n      result = two_sum(nums, target)\n      print(result)\n  else:\n    nums = [2, 7, 11, 15]\n    target = 9\n    result = two_sum(nums, target)\n    print(result)\n\n\n",
+    "testCase": {
+      "input": ["[[2, 7, 11, 15], 9]", "[[3, 2, 4], 6]", "[[3, 3], 6]"],
+      "output": ["[0, 1]", "[1, 2]", "[0, 1]"]
+    }
+  },
+  {
+    "id": "reverse-linked-list",
+    "title": "Reverse Linked List",
+    "problemStatement": "<p class='mt-3'>Given the <code>head</code> of a singly linked list, reverse the list, and return <em>the reversed list</em>.</p>",
+    "examples": [
+      {
+        "id": 0,
+        "inputText": "head = [1,2,3,4,5]",
+        "outputText": "[5,4,3,2,1]"
+      },
+      {
+        "id": 1,
+        "inputText": "head = [1,2,3]",
+        "outputText": "[3,2,1]"
+      },
+      {
+        "id": 2,
+        "inputText": "head = [1]",
+        "outputText": "[1]"
+      }
+    ],
+    "constraints": "<li class='mt-2'>The number of nodes in the list is the range <code>[0, 5000]</code>.</li><li class='mt-2'><code>-5000 <= Node.val <= 5000</code></li>",
+    "difficulty": "Hard",
+    "category": "Linked List",
+    "order": 2,
+    "videoId": "",
+    "starterCode": "import ast\nimport sys\n\nclass ListNode:\n  def __init__(self, value=0, next=None):    \n    self.value = value\n    self.next = next\n\ndef reverse_linked_list(head):\n  prev = None\n  current = head\n  ''' Write your logic '''\n    \n\n# Function to convert a list to a linked list\ndef list_to_linked_list(lst):\n  if not lst:\n    return None\n\n  head = ListNode(lst[0])\n  current = head\n\n  for value in lst[1:]:\n    current.next = ListNode(value)\n    current = current.next\n\n  return head\n\n# Function to convert a linked list to a list\ndef linked_list_to_list(head):\n  result = []\n  while head:\n    result.append(head.value)\n    head = head.next\n  return result\n\nif __name__ == \"__main__\":\n  if len(sys.argv) > 1:\n    nums = [ast.literal_eval(arg) for arg in sys.argv[1:]]\n        \n    for i in nums:\n      input_head = list_to_linked_list(i)\n      reversed_head = reverse_linked_list(input_head)\n      output_list = linked_list_to_list(reversed_head)\n      print(output_list)\n            \n  else:\n    \n    # Example usage:\n    input_list = [1, 2, 3, 4, 5]\n\n    # Convert the input list to a linked list\n    input_head = list_to_linked_list(input_list)\n\n    # Reverse the linked list\n    reversed_head = reverse_linked_list(input_head)\n\n    # Convert the reversed linked list to a list\n    output_list = linked_list_to_list(reversed_head)\n\n    print(output_list)",
+    "testCase": {
+      "input": ["[2, 7, 11, 15]", "[1,2]", "[0]"],
+      "output": ["[15, 11, 7, 2]", "[2, 1]", "[0]"]
+    }
+  },
+  {
+    "id": "jump-game",
+    "title": "Jump Game",
+    "problemStatement": "<p class='mt-3'>You are given an integer array <code>nums</code>. You are initially positioned at the <strong>first index</strong>and each element in the array represents your maximum jump length at that position.</p><p class='mt-3'>Return <code>true</code> if you can reach the last index, or <code>false</code> otherwise.</p>",
+    "examples": [
+      {
+        "id": 0,
+        "inputText": "nums = [2,3,1,1,4]",
+        "outputText": "true",
+        "explanation": "Jump 1 step from index 0 to 1, then 3 steps to the last index."
+      },
+      {
+        "id": 1,
+        "inputText": "nums = [3,2,1,0,4]",
+        "outputText": "false",
+        "explanation": "You will always arrive at index 3 no matter what. Its maximum jump length is 0, which makes it impossible to reach the last index."
+      }
+    ],
+    "constraints": "<li class='mt-2'><code>1 <= nums.length <= 10^4</code></li><li class='mt-2'><code>0 <= nums[i] <= 10^5</code></li>",
+    "difficulty": "Medium",
+    "category": "Dynamic Programming",
+    "order": 3,
+    "videoId": "",
+    "starterCode": "import ast\nimport sys\n\n\ndef can_jump(nums):\n  '''Write Your Logic'''\n\n\n\nif __name__ == \"__main__\":\n  # Check if command-line arguments are available\n  if len(sys.argv) > 1:\n    # Parse command-line arguments as integers\n    nums = [ast.literal_eval(arg) for arg in sys.argv[1:]]\n    for i in nums:\n      result = can_jump(i)\n      print(result)\n                        \n  else:\n    nums = [2, 3, 1, 1, 4]\n    result = can_jump(nums)\n    print(result)\n",
+    "testCase": {
+      "input": ["[2,3,1,1,4]", "[3,2,1,0,4]"],
+      "output": ["True", "False"]
+    }
+  },
+  {
+    "id": "valid-parentheses",
+    "title": "Valid Parentheses",
+    "problemStatement": "<p class='mt-3'>Given a string <code>s</code> containing just the characters <code>'('</code>, <code>')'</code>, <code>'{'</code>, <code>'}'</code>, <code>'['</code> and <code>']'</code>, determine if the input string is valid.</p> <p class='mt-3'>An input string is valid if:</p> <ul> <li class='mt-2'>Open brackets must be closed by the same type of brackets.</li> <li class='mt-3'>Open brackets must be closed in the correct order.</li><li class='mt-3'>Every close bracket has a corresponding open bracket of the same type. </li></ul>",
+    "examples": [
+      {
+        "id": 0,
+        "inputText": "s = ()",
+        "outputText": "True"
+      },
+      {
+        "id": 1,
+        "inputText": "s = ()[]{}",
+        "outputText": "True"
+      },
+      {
+        "id": 2,
+        "inputText": "s = (]",
+        "outputText": "False"
+      },
+      {
+        "id": 3,
+        "inputText": "s = ([)]",
+        "outputText": "False"
+      }
+    ],
+    "constraints": "<li class='mt-2'><code>1 <= s.length <= 10<sup>4</sup></code></li><li><class='mt-2 '><code>s</code> consists of parentheses only <code class='text-md'>'()[]{}'</code>.</li>",
+    "difficulty": "Easy",
+    "category": "Stack",
+    "order": 4,
+    "videoId": "xty7fr-k0TU",
+    "starterCode": "import sys\n\ndef is_valid(s):\n  ''' Write Your Code '''\n\n\nif __name__ == \"__main__\":\n  # Check if command-line arguments are available\n  if len(sys.argv) > 1:\n    nums = [(arg) for arg in sys.argv[1:]]\n    for i in nums:\n      result = is_valid(i)\n      print(result)\n  else:\n    nums = \"({[]})\"\n    result = is_valid(nums)\n    print(result)\n",
+    "testCase": {
+      "input": ["()", "()[]{}", "(]"],
+      "output": ["True", "True", "False"]
+    }
+  },
+  {
+    "id": "search-a-2d-matrix",
+    "title": "Search a 2D Matrix",
+    "problemStatement": "<p class='mt-3'>Write an efficient algorithm that searches for a value in an <code>m x n</code> matrix. This matrix has the following properties:</p><li class='mt-3'>Integers in each row are sorted from left to right.</li><li class='mt-3'>The first integer of each row is greater than the last integer of the previous row.</li><p class='mt-3'>Given <code>matrix</code>, an <code>m x n</code> matrix, and <code>target</code>, return <code>true</code> if <code>target</code> is in the matrix, and <code>false</code> otherwise.</p>",
+    "examples": [
+      {
+        "id": 0,
+        "inputText": "matrix = [[1,3,5,7],[10,11,16,20],[23,30,34,60]], target = 3",
+        "outputText": "true"
+      },
+      {
+        "id": 1,
+        "inputText": "matrix = [[1,3,5,7],[10,11,16,20],[23,30,34,60]], target = 13",
+        "outputText": "false"
+      },
+      {
+        "id": 2,
+        "inputText": "matrix = [[1]], target = 1",
+        "outputText": "true"
+      }
+    ],
+    "constraints": "<li class='mt-2'><code>m == matrix.length</code></li><li class='mt-2'><code>n == matrix[i].length</code></li><li class='mt-2'><code>1 <= m, n <= 100</code></li><li class='mt-2'><code>-10<sup>4</sup> <= matrix[i][j], target <= 10<sup>4</sup></code></li>",
+    "difficulty": "Medium",
+    "category": "Binary Search",
+    "order": 5,
+    "videoId": "ZfFl4torNg4",
+    "starterCode": "import ast\nimport sys\n\ndef search_matrix(matrix, target):\n  #Write Your Code\n\n\nif __name__ == \"__main__\":\n  # Check if command-line arguments are available\n  if len(sys.argv) > 1:\n    arg_pairs = [ast.literal_eval(arg) for arg in sys.argv[1:]]  \n    for arg_pair in arg_pairs:\n      matrix, target = arg_pair\n      matrix = [list(row) for row in matrix]  # Ensure each row is a list\n      target = int(target)\n      \n      result = search_matrix(matrix, target)\n      print(result)\n                        \n  else:\n    matrix = [\n              [1,3,5,7],[10,11,16,20],[23,30,34,60]\n       ]\n\n    target = 3\n    result = search_matrix(matrix, target)\n    print(result)\n",
+    "testCase": {
+      "input": [
+        "[[[1,3,5,7],[10,11,16,20],[23,30,34,60]], 3]",
+        "[[[1,3,5,7],[10,11,16,20],[23,30,34,60]], 13]"
+      ],
+      "output": ["True", "False"]
+    }
+  },
+  {
+    "id": "container-with-most-water",
+    "title": "Container With Most Water",
+    "problemStatement": "<p class='mt-3'>You are given an integer array <code>height</code> of length <code>n</code>. There are n vertical lines drawn such that the two endpoints of the <code>ith</code> line are <code>(i, 0)</code> and <code>(i, height[i])</code>.<br>Find two lines that together with the x-axis form a container, such that the container contains the most water.<br>Return the maximum amount of water a container can store.<br><b>Notice</b> that you may not slant the container.</p>",
+    "examples": [
+      {
+        "id": 0,
+        "inputText": "height = [1,8,6,2,5,4,8,3,7]",
+        "explanation": "The above vertical lines are represented by array [1,8,6,2,5,4,8,3,7]. In this case, the max area of water (blue section) the container can contain is 49.",
+        "outputText": "49"
+      },
+      {
+        "id": 1,
+        "inputText": "height =[1,1]",
+        "outputText": "1"
+      }
+    ],
+    "constraints": "<li class='mt-2'><code>n == height.length</code></li><li class='mt-2'><code>2 <= n <=10^5</code></li><li class='mt-2'><code>0 <= height[i] <= 10<sup>4</sup></code></li>",
+    "difficulty": "Medium",
+    "category": "Two Pointers",
+    "order": 6,
+    "videoId": "",
+    "starterCode": "import ast\nimport sys\n\n\ndef max_area(height):\n  max_area_value = 0\n  left = 0\n  right = len(height) - 1\n  ''' Write Your Logic '''\n\n\n  return max_area_value\n\n# Example usage:\nif __name__ == \"__main__\":\n  if len(sys.argv) > 1:\n       \n    nums = [ast.literal_eval(arg) for arg in sys.argv[1:]]\n    for i in nums:\n      result = max_area(i)\n      print(result)\n                        \n  else:\n    # Example Use\n    height = [1, 8, 6, 2, 5, 4, 8, 3, 7]\n    result = max_area(height)\n    print(result)\n",
+    "testCase": {
+      "input": ["[1, 8, 6, 2, 5, 4, 8, 3, 7]", "[1,1]"],
+      "output": ["49", "1"]
+    }
+  },
+  {
+    "id": "merge-intervals",
+    "title": "Merge Intervals",
+    "problemStatement": "<p class='mt-3'>Given an array of <code>intervals</code> where <code>intervals[i] = [start<sub>i</sub>, end<sub>i</sub>]</code>, merge all overlapping intervals, and return an array of the non-overlapping intervals that cover all the intervals in the input.</p>",
+    "examples": [
+      {
+        "id": 0,
+        "inputText": "intervals = [[1,3],[2,6],[8,10],[15,18]]",
+        "explanation": "Since intervals [1,3] and [2,6] overlap, merge them into [1,6].",
+        "outputText": "[[1,6],[8,10],[15,18]]"
+      },
+      {
+        "id": 1,
+        "inputText": "intervals = [[1,4],[4,5]]",
+        "explanation": "Intervals [1,4] and [4,5] are considered overlapping.",
+        "outputText": "[[1,5]]"
+      }
+    ],
+    "constraints": "<li class='mt-2'><code>1 <== intervals.length <= 10<sup>4</sup></code></li><li class='mt-2'><code>intervals[i].length ==2</code></li><li class='mt-2'><code>0 <= start<sub>i</sub> <=end<sub>i</sub> <= 10<sup>4</sup></code></li>",
+    "difficulty": "Medium",
+    "category": "intervals",
+    "order": 7,
+    "videoId": "",
+    "starterCode": "import ast\nimport sys\n\ndef merge(intervals):\n  #Write your logic    \n\nif __name__ == \"__main__\":\n  if len(sys.argv) > 1:\n    nums = [ast.literal_eval(arg) for arg in sys.argv[1:]]\n    for i in nums:\n      result = merge(i)\n      print(result)\n            \n  else:   \n    intervals = [[1, 3], [2, 6], [8, 10], [15, 18]]\n    result = merge(intervals)\n    print(result)\n",
+    "testCase": {
+      "input": ["[[1, 3], [2, 6], [8, 10], [15, 18]]", "[[1, 4], [4, 5]]"],
+      "output": ["[[1, 6], [8, 10], [15, 18]]", "[[1, 5]]"]
+    }
+  },
+  {
+    "id": "maximum-depth-of-binary-tree",
+    "title": "Maximum Depth of Binary Tree",
+    "problemStatement": "<p class='mt-3'>Given the <code>root</code> of a binary tree, return <i>its maximum depth.</i><br> A binary tree's <b>maximum</b> depth is the number of nodes along the longest path from the root node down to the farthest leaf node.</p>",
+    "examples": [
+      {
+        "id": 0,
+        "inputText": "root = [3,9,20,null,null,15,7]",
+        "outputText": "3"
+      },
+      {
+        "id": 1,
+        "inputText": "root = [1,null,2]",
+        "outputText": "2"
+      }
+    ],
+    "constraints": "<li class='mt-2'>The number of nodes in the tree is in the range<code>[0, 10<sup>4</sup>]</code></li><li class='mt-2'><code>-100 <= Node.val <= 100</code></li>",
+    "difficulty": "Easy",
+    "category": "Tree",
+    "order": 8,
+    "videoId": "4qYTqOiRMoM",
+    "starterCode": "import ast\nimport sys\n\n\nclass TreeNode:\n  def __init__(self, value=0, left=None, right=None):\n    self.value = value\n    self.left = left\n    self.right = right\n\ndef list_to_tree(nodes):\n  if not nodes:\n    return None\n\n  root = TreeNode(nodes[0])\n  queue = [root]\n  i = 1\n\n  while i < len(nodes):\n    current = queue.pop(0)\n\n    if nodes[i] is not None:\n      current.left = TreeNode(nodes[i])\n      queue.append(current.left)\n      i += 1\n\n    if i < len(nodes) and nodes[i] is not None:\n      current.right = TreeNode(nodes[i])\n      queue.append(current.right)\n      i += 1\n\n  return root\n\ndef max_depth(root):\n    ''' Write Your Code '''\n\n\n\n\n\nif __name__ == \"__main__\":\n    \n  if len(sys.argv) > 1:       \n    nums = [ast.literal_eval(arg) for arg in sys.argv[1:]]\n    for i in nums:\n      root = list_to_tree(i)\n      result = max_depth(root)\n      print(result)\n            \n  else:\n    input_list = [3, 9, 20, None, None, 15, 7]\n    root = list_to_tree(input_list)\n    result = max_depth(root)\n    print(result)\n        \n",
+    "testCode": {
+      "input": ["[3, 9, 20, None, None, 15, 7]", "[1,None,2]"],
+      "output": ["3", "2"]
+    }
+  },
+  {
+    "id": "best-time-to-buy-and-sell-stock",
+    "title": "Best Time to Buy and Sell Stock",
+    "problemStatement": "<p class='mt-3'>You are given an array <code> prices </code> where  <code>prices[i] </code> is the price of a given stock on the  <code>i<sup>th</sup> </code> day.<br>You want to maximize your profit by choosing a <b>single day</b> to buy one stock and choosing a <b>different day in the future</b> to sell that stock.<br>Return <i>the maximum profit you can achieve from this transaction.</i> If you cannot achieve any profit, return <code>0</code>.</p>",
+    "examples": [
+      {
+        "id": 0,
+        "inputText": "prices = [7,1,5,3,6,4]",
+        "explanation": "Buy on day 2 (price = 1) and sell on day 5 (price = 6), profit = 6-1 = 5. Note that buying on day 2 and selling on day 1 is not allowed because you must buy before you sell.",
+        "outputText": "5"
+      },
+      {
+        "id": 1,
+        "inputText": "prices = [7,6,4,3,1]",
+        "explanation": "In this case, no transactions are done and the max profit = 0.",
+        "outputText": "0"
+      }
+    ],
+    "constraints": "<li class='mt-2'><code>1 <= prices.length <= 10<sup>5</sup></code></li><li class='mt-2'><code>0 <= prices[i] <= 10<sup>4</sup></code></li>",
+    "difficulty": "Easy",
+    "category": "Array",
+    "order": 9,
+    "videoId": "",
+    "starterCode": "import ast\nimport sys\n\n\ndef max_profit(prices):\n  if not prices or len(prices) < 2:\n    return 0\n\n    min_price = prices[0]\n    max_profit = 0\n\n    '''' Write Your Code '''\n    \n\n  return max_profit\n\n\n\n\nif __name__ == \"__main__\":\n \n  if len(sys.argv) > 1:\n    nums = [ast.literal_eval(arg) for arg in sys.argv[1:]]\n    for i in nums:\n      result = max_profit(i)\n      print(result)\n            \n  else:\n    prices = [7, 1, 5, 3, 6, 4]\n    result = max_profit(prices)\n    print(result)\n ",
+    "testCase": {
+      "Input": ["[7, 1, 5, 3, 6, 4]", "[7,6,4,3,1]"],
+      "OutPut": ["5", "0"]
+    }
+  },
+  {
+    "id": "subsets",
+    "title": "Subsets",
+    "problemStatement": "<p class='mt-3'>Given an integer array nums of unique elements, return <i>all possible <span class='text-sky-400'>subsets</span>(the power set).</i> The solution set <b>must not</b> contain duplicate subsets. Return the solution in <b>any order.</b></p>",
+    "examples": [
+      {
+        "id": 0,
+        "inputText": "nums = [1,2,3]",
+        "outputText": "[[],[1],[2],[1,2],[3],[1,3],[2,3],[1,2,3]]"
+      },
+      {
+        "id": 1,
+        "inputText": "nums = [0]",
+        "outputText": "[[],[0]]"
+      }
+    ],
+    "constraints": "<li class='mt-2'><code>1 <= nums.length <= 10</code></li><li class='mt-2'><code>-10 <= num[i] <= 10</code></li><li class='mt-2'>All the numbers of <code>nums</code> are <b>unique</b>.</li>",
+    "difficulty": "Medium",
+    "category": "Backtracking",
+    "order": 10,
+    "videoId": "",
+    "starterCode": "import sys\nimport ast\n\n\ndef subsets(nums):\n  ''' Write Your Logic '''\n\nif __name__ == \"__main__\":\n  if len(sys.argv) > 1:\n    nums = [ast.literal_eval(arg) for arg in sys.argv[1:]]\n    for i in nums:\n      result = subsets(i)\n      print(result)\n            \n  else:\n    prices = [1, 2, 3]\n    result = subsets(prices)\n    print(result)\n        ",
+    "testCase": {
+      "input": ["[1,2,3]", "[0]"],
+      "output": [
+        "[[], [1], [2], [1, 2], [3], [1, 3], [2, 3], [1, 2, 3]]",
+        "[[], [0]]"
+      ]
+    }
+  },
+
+  {
+    "id": "reverse-array",
+    "title": "Reverse Array",
+    "problemStatement": "<p class='mt-3'>Given an array of integers <code>arr</code>, reverse the array in-place.</p>",
+    "examples": [
+      {
+        "id": 0,
+        "inputText": "arr = [1,2,3,4,5]",
+        "outputText": "[5,4,3,2,1]"
+      },
+      {
+        "id": 1,
+        "inputText": "arr = [3,2,1]",
+        "outputText": "[1,2,3]"
+      }
+    ],
+    "constraints": "<li class='mt-2'><code>1 <= arr.length <= 10^4</code></li><li class='mt-2'><code>-10^4 <= arr[i] <= 10^4</code></li>",
+    "difficulty": "Easy",
+    "category": "Array",
+    "order": 1,
+    "videoId": "",
+    "starterCode": "def reverse_array(arr):\n    ''' Write Your Code '''\n\nif __name__ == \"__main__\":\n    arr = [1, 2, 3, 4, 5]\n    reverse_array(arr)\n    print(arr)\n",
+    "testCase": {
+      "input": ["[1, 2, 3, 4, 5]", "[3, 2, 1]"],
+      "output": ["[5, 4, 3, 2, 1]", "[1, 2, 3]"]
+    }
+  },
+  {
+    "id": "max-min-element",
+    "title": "Maximum and Minimum Element in an Array",
+    "problemStatement": "<p class='mt-3'>Given an array of integers <code>arr</code>, find the maximum and minimum elements in the array.</p>",
+    "examples": [
+      {
+        "id": 0,
+        "inputText": "arr = [1,2,3,4,5]",
+        "outputText": "Max: 5, Min: 1"
+      },
+      {
+        "id": 1,
+        "inputText": "arr = [3,2,1]",
+        "outputText": "Max: 3, Min: 1"
+      }
+    ],
+    "constraints": "<li class='mt-2'><code>1 <= arr.length <= 10^4</code></li><li class='mt-2'><code>-10^4 <= arr[i] <= 10^4</code></li>",
+    "difficulty": "Easy",
+    "category": "Array",
+    "order": 2,
+    "videoId": "",
+    "starterCode": "def max_min_element(arr):\n    ''' Write Your Code '''\n\nif __name__ == \"__main__\":\n    arr = [1, 2, 3, 4, 5]\n    max_min_element(arr)\n",
+    "testCase": {
+      "input": ["[1, 2, 3, 4, 5]", "[3, 2, 1]"],
+      "output": ["Max: 5, Min: 1", "Max: 3, Min: 1"]
+    }
+  },
+  {
+    "id": "kth-max-min",
+    "title": "Kth Maximum and Minimum Element of an Array",
+    "problemStatement": "<p class='mt-3'>Given an array of integers <code>arr</code> and an integer <code>k</code>, find the <code>k</code>th maximum and minimum elements in the array.</p>",
+    "examples": [
+      {
+        "id": 0,
+        "inputText": "arr = [1,2,3,4,5], k = 2",
+        "outputText": "2nd Max: 4, 2nd Min: 2"
+      },
+      {
+        "id": 1,
+        "inputText": "arr = [3,2,1], k = 3",
+        "outputText": "3rd Max: 1, 3rd Min: 3"
+      }
+    ],
+    "constraints": "<li class='mt-2'><code>1 <= arr.length <= 10^4</code></li><li class='mt-2'><code>-10^4 <= arr[i] <= 10^4</code></li><li class='mt-2'><code>1 <= k <= arr.length</code></li>",
+    "difficulty": "Easy",
+    "category": "Array",
+    "order": 3,
+    "videoId": "",
+    "starterCode": "def kth_max_min(arr, k):\n    ''' Write Your Code '''\n\nif __name__ == \"__main__\":\n    arr = [1, 2, 3, 4, 5]\n    k = 2\n    kth_max_min(arr, k)\n",
+    "testCase": {
+      "input": ["[1, 2, 3, 4, 5], 2", "[3, 2, 1], 3"],
+      "output": ["2nd Max: 4, 2nd Min: 2", "3rd Max: 1, 3rd Min: 3"]
+    }
+  },
+  {
+    "id": "subarray-with-given-sum",
+    "title": "Subarray with Given Sum",
+    "problemStatement": "<p class='mt-3'>Given an unsorted array of non-negative integers, find a continuous subarray which adds to a given number <code>S</code>.</p><p class='mt-3'><strong>Note:</strong> The sum of minimum and maximum elements of the subarray will be less than or equal to <code>10^9</code>.</p>",
+    "examples": [
+      {
+        "id": 0,
+        "inputText": "arr = [1,2,3,4,5], S = 9",
+        "outputText": "[2,3,4]"
+      },
+      {
+        "id": 1,
+        "inputText": "arr = [1,2,3,7,5], S = 12",
+        "outputText": "[2,3,7]"
+      }
+    ],
+    "constraints": "<li class='mt-2'><code>1 <= arr.length <= 10^5</code></li><li class='mt-2'><code>0 <= arr[i] <= 10^9</code></li>",
+    "difficulty": "Easy",
+    "category": "Array",
+    "order": 4,
+    "videoId": "",
+    "starterCode": "def subarray_with_given_sum(arr, S):\n    ''' Write Your Code '''\n\nif __name__ == \"__main__\":\n    arr = [1, 2, 3, 4, 5]\n    S = 9\n    subarray_with_given_sum(arr, S)\n",
+    "testCase": {
+      "input": ["[1, 2, 3, 4, 5], 9", "[1, 2, 3, 7, 5], 12"],
+      "output": ["[2, 3, 4]", "[2, 3, 7]"]
+    }
+  },
+  {
+    "id": "leaders-in-an-array",
+    "title": "Leaders in an Array",
+    "problemStatement": "<p class='mt-3'>An element is called the leader of an array if there is no element greater than it on the right side of it in the array. You have to find the leaders in the array.</p>",
+    "examples": [
+      {
+        "id": 0,
+        "inputText": "arr = [16, 17, 4, 3, 5, 2]",
+        "outputText": "[17, 5, 2]"
+      },
+      {
+        "id": 1,
+        "inputText": "arr = [1, 2, 3, 4, 0]",
+        "outputText": "[4, 0]"
+      }
+    ],
+    "constraints": "<li class='mt-2'><code>1 <= arr.length <= 10^5</code></li><li class='mt-2'><code>0 <= arr[i] <= 10^7</code></li>",
+    "difficulty": "Easy",
+    "category": "Array",
+    "order": 5,
+    "videoId": "",
+    "starterCode": "def leaders_in_an_array(arr):\n    ''' Write Your Code '''\n\nif __name__ == \"__main__\":\n    arr = [16, 17, 4, 3, 5, 2]\n    leaders_in_an_array(arr)\n",
+    "testCase": {
+      "input": ["[16, 17, 4, 3, 5, 2]", "[1, 2, 3, 4, 0]"],
+      "output": ["[17, 5, 2]", "[4, 0]"]
+    }
+  },
+  {
+    "id": "merge-two-sorted-arrays",
+    "title": "Merge Two Sorted Arrays",
+    "problemStatement": "<p class='mt-3'>Given two sorted arrays <code>arr1</code> and <code>arr2</code> of size <code>m</code> and <code>n</code> respectively, merge them into one sorted array.</p>",
+    "examples": [
+      {
+        "id": 0,
+        "inputText": "arr1 = [1,3,5,7], arr2 = [2,4,6,8]",
+        "outputText": "[1,2,3,4,5,6,7,8]"
+      },
+      {
+        "id": 1,
+        "inputText": "arr1 = [1,2,3], arr2 = [4,5,6,7]",
+        "outputText": "[1,2,3,4,5,6,7]"
+      }
+    ],
+    "constraints": "<li class='mt-2'><code>1 <= m, n <= 10^5</code></li><li class='mt-2'><code>arr1.length = m + n</code></li><li class='mt-2'><code>-10^9 <= arr1[i], arr2[i] <= 10^9</code></li>",
+    "difficulty": "Easy",
+    "category": "Array",
+    "order": 6,
+    "videoId": "",
+    "starterCode": "def merge_two_sorted_arrays(arr1, arr2):\n    ''' Write Your Code '''\n\nif __name__ == \"__main__\":\n    arr1 = [1, 3, 5, 7]\n    arr2 = [2, 4, 6, 8]\n    merge_two_sorted_arrays(arr1, arr2)\n",
+    "testCase": {
+      "input": ["[[1, 3, 5, 7], [2, 4, 6, 8]]", "[[1, 2, 3], [4, 5, 6, 7]]"],
+      "output": ["[1, 2, 3, 4, 5, 6, 7, 8]", "[1, 2, 3, 4, 5, 6, 7]"]
+    }
+  },
+  {
+    "id": "spiral-traversal-matrix",
+    "title": "Spiral Traversal on a Matrix",
+    "problemStatement": "Given a matrix of size m x n, print all elements of the matrix in spiral order.",
+    "examples": [
+      {
+        "id": 0,
+        "inputText": "[[1, 2, 3], [4, 5, 6], [7, 8, 9]]",
+        "outputText": "[1, 2, 3, 6, 9, 8, 7, 4, 5]",
+        "explanation": "Spiral order traversal of the matrix is [1, 2, 3, 6, 9, 8, 7, 4, 5]."
+      }
+    ],
+    "constraints": "1 <= m, n <= 100",
+    "difficulty": "Medium",
+    "category": "Matrix",
+    "order": 2,
+    "videoId": "sOME_VIDEO_ID",
+    "starterCode": "def spiral_traversal(matrix):\n    # Write your code here\n    pass\n\n\nif __name__ == '__main__':\n    matrix = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]\n    result = spiral_traversal(matrix)\n    print(result)",
+    "testCase": {
+      "input": ["[[1, 2, 3], [4, 5, 6], [7, 8, 9]]"],
+      "output": ["[1, 2, 3, 6, 9, 8, 7, 4, 5]"]
+    }
+  },
+  {
+    "id": "search-element-matrix",
+    "title": "Search an Element in a Matrix",
+    "problemStatement": "Given a matrix mat[][] of size n x m and an integer x, find the position of x in the matrix if it is present, else print -1.",
+    "examples": [
+      {
+        "id": 0,
+        "inputText": "[[10, 20, 30, 40], [15, 25, 35, 45], [27, 29, 37, 48], [32, 33, 39, 50]], x = 29",
+        "outputText": "[2, 1]",
+        "explanation": "Element 29 is present at position (2, 1) in the matrix."
+      }
+    ],
+    "constraints": "1 <= n, m <= 100",
+    "difficulty": "Easy",
+    "category": "Matrix",
+    "order": 3,
+    "videoId": "sOME_VIDEO_ID",
+    "starterCode": "def search_element(matrix, x):\n    # Write your code here\n    pass\n\n\nif __name__ == '__main__':\n    matrix = [[10, 20, 30, 40], [15, 25, 35, 45], [27, 29, 37, 48], [32, 33, 39, 50]]\n    x = 29\n    result = search_element(matrix, x)\n    print(result)",
+    "testCase": {
+      "input": [
+        "[[10, 20, 30, 40], [15, 25, 35, 45], [27, 29, 37, 48], [32, 33, 39, 50]], 29"
+      ],
+      "output": ["[2, 1]"]
+    }
+  },
+  {
+    "id": "find-median-row-wise-sorted-matrix",
+    "title": "Find Median in a Row-Wise Sorted Matrix",
+    "problemStatement": "Given a row-wise sorted matrix, find the median of the matrix.",
+    "examples": [
+      {
+        "id": 0,
+        "inputText": "[[1, 3, 5], [2, 6, 9], [3, 6, 9]]",
+        "outputText": "5",
+        "explanation": "Median of the matrix is 5."
+      }
+    ],
+    "constraints": "1 <= n <= 1000",
+    "difficulty": "Medium",
+    "category": "Matrix",
+    "order": 4,
+    "videoId": "sOME_VIDEO_ID",
+    "starterCode": "def find_median(matrix):\n    # Write your code here\n    pass\n\n\nif __name__ == '__main__':\n    matrix = [[1, 3, 5], [2, 6, 9], [3, 6, 9]]\n    result = find_median(matrix)\n    print(result)",
+    "testCase": {
+      "input": ["[[1, 3, 5], [2, 6, 9], [3, 6, 9]]"],
+      "output": ["5"]
+    }
+  },
+  {
+    "id": "find-row-maximum-ones",
+    "title": "Find Row with Maximum No. of 1's",
+    "problemStatement": "Given a boolean 2D array, where each row is sorted. Find the row with the maximum number of 1's.",
+    "examples": [
+      {
+        "id": 0,
+        "inputText": "[[0, 1, 1, 1], [0, 0, 1, 1], [1, 1, 1, 1], [0, 0, 0, 0]]",
+        "outputText": "2",
+        "explanation": "Row 2 has the maximum number of 1's."
+      }
+    ],
+    "constraints": "1 <= n, m <= 100",
+    "difficulty": "Easy",
+    "category": "Matrix",
+    "order": 5,
+    "videoId": "sOME_VIDEO_ID",
+    "starterCode": "def find_max_ones(matrix):\n    # Write your code here\n    pass\n\n\nif __name__ == '__main__':\n    matrix = [[0, 1, 1, 1], [0, 0, 1, 1], [1, 1, 1, 1], [0, 0, 0, 0]]\n    result = find_max_ones(matrix)\n    print(result)",
+    "testCase": {
+      "input": ["[[0, 1, 1, 1], [0, 0, 1, 1], [1, 1, 1, 1], [0, 0, 0, 0]]"],
+      "output": ["2"]
+    }
+  },
+  {
+    "id": "print-sorted-order-row-column-wise-sorted-matrix",
+    "title": "Print Elements in Sorted Order Using Row-Column Wise Sorted Matrix",
+    "problemStatement": "Given an n x n matrix, where every row and column is sorted in non-decreasing order, print all elements of matrix in sorted order.",
+    "examples": [
+      {
+        "id": 0,
+        "inputText": "[[10, 20, 30, 40], [15, 25, 35, 45], [27, 29, 37, 48], [32, 33, 39, 50]]",
+        "outputText": "[10, 15, 20, 25, 27, 29, 30, 32, 33, 35, 37, 39, 40, 45, 48, 50]",
+        "explanation": "All elements of the matrix in sorted order."
+      }
+    ],
+    "constraints": "1 <= n <= 100",
+    "difficulty": "Medium",
+    "category": "Matrix",
+    "order": 6,
+    "videoId": "sOME_VIDEO_ID",
+    "starterCode": "def print_sorted_order(matrix):\n    # Write your code here\n    pass\n\n\nif __name__ == '__main__':\n    matrix = [[10, 20, 30, 40], [15, 25, 35, 45], [27, 29, 37, 48], [32, 33, 39, 50]]\n    result = print_sorted_order(matrix)\n    print(result)",
+    "testCase": {
+      "input": [
+        "[[10, 20, 30, 40], [15, 25, 35, 45], [27, 29, 37, 48], [32, 33, 39, 50]]"
+      ],
+      "output": [
+        "[10, 15, 20, 25, 27, 29, 30, 32, 33, 35, 37, 39, 40, 45, 48, 50]"
+      ]
+    }
+  },
+  {
+    "id": "maximum-size-rectangle",
+    "title": "Maximum Size Rectangle",
+    "problemStatement": "Given a binary matrix, find the maximum size rectangle binary-sub-matrix with all 1’s.",
+    "examples": [
+      {
+        "id": 0,
+        "inputText": "[[0, 1, 1, 0], [1, 1, 1, 1], [1, 1, 1, 1], [1, 1, 0, 0]]",
+        "outputText": "8",
+        "explanation": "Maximum size rectangle binary-sub-matrix with all 1’s has area 8."
+      }
+    ],
+    "constraints": "1 <= n, m <= 100",
+    "difficulty": "Hard",
+    "category": "Matrix",
+    "order": 7,
+    "videoId": "sOME_VIDEO_ID",
+    "starterCode": "def max_rectangle(matrix):\n    # Write your code here\n    pass\n\n\nif __name__ == '__main__':\n    matrix = [[0, 1, 1, 0], [1, 1, 1, 1], [1, 1, 1, 1], [1, 1, 0, 0]]\n    result = max_rectangle(matrix)\n    print(result)",
+    "testCase": {
+      "input": ["[[0, 1, 1, 0], [1, 1, 1, 1], [1, 1, 1, 1], [1, 1, 0, 0]]"],
+      "output": ["8"]
+    }
+  },
+  {
+    "id": "specific-pair-matrix",
+    "title": "Find a Specific Pair in Matrix",
+    "problemStatement": "Given a n x n matrix, where every row and column is sorted in non-decreasing order, find a specific pair (a, b) in the matrix such that a < b and both a and b exist in every row and column of the matrix.",
+    "examples": [
+      {
+        "id": 0,
+        "inputText": "[[10, 20, 30, 40], [15, 25, 35, 45], [27, 29, 37, 48], [32, 33, 39, 50]], a = 20, b = 37",
+        "outputText": "True",
+        "explanation": "Pair (20, 37) exists in every row and column of the matrix."
+      }
+    ],
+    "constraints": "1 <= n <= 100",
+    "difficulty": "Medium",
+    "category": "Matrix",
+    "order": 8,
+    "videoId": "sOME_VIDEO_ID",
+    "starterCode": "def find_specific_pair(matrix, a, b):\n    # Write your code here\n    pass\n\n\nif __name__ == '__main__':\n    matrix = [[10, 20, 30, 40], [15, 25, 35, 45], [27, 29, 37, 48], [32, 33, 39, 50]]\n    a, b = 20, 37\n    result = find_specific_pair(matrix, a, b)\n    print(result)",
+    "testCase": {
+      "input": [
+        "[[10, 20, 30, 40], [15, 25, 35, 45], [27, 29, 37, 48], [32, 33, 39, 50]], 20, 37"
+      ],
+      "output": ["True"]
+    }
+  },
+  {
+    "id": "rotate-matrix-90-degrees",
+    "title": "Rotate Matrix by 90 Degrees",
+    "problemStatement": "Given a square matrix, turn it by 90 degrees in the clockwise direction without using any extra space.",
+    "examples": [
+      {
+        "id": 0,
+        "inputText": "[[1, 2, 3], [4, 5, 6], [7, 8, 9]]",
+        "outputText": "[[7, 4, 1], [8, 5, 2], [9, 6, 3]]",
+        "explanation": "Matrix rotated by 90 degrees in clockwise direction."
+      }
+    ],
+    "constraints": "1 <= n <= 100",
+    "difficulty": "Medium",
+    "category": "Matrix",
+    "order": 9,
+    "videoId": "sOME_VIDEO_ID",
+    "starterCode": "def rotate_matrix(matrix):\n    # Write your code here\n    pass\n\n\nif __name__ == '__main__':\n    matrix = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]\n    result = rotate_matrix(matrix)\n    print(result)",
+    "testCase": {
+      "input": ["[[1, 2, 3], [4, 5, 6], [7, 8, 9]]"],
+      "output": ["[[7, 4, 1], [8, 5, 2], [9, 6, 3]]"]
+    }
+  },
+  {
+    "id": "kth-smallest-element-row-column-wise-sorted-matrix",
+    "title": "Kth Smallest Element in a Row-Column Wise Sorted Matrix",
+    "problemStatement": "Given a square matrix where each row and column is sorted in ascending order, find the kth smallest element in the matrix.",
+    "examples": [
+      {
+        "id": 0,
+        "inputText": "[[10, 20, 30], [15, 25, 35], [25, 29, 37]], k = 4",
+        "outputText": "25",
+        "explanation": "4th smallest element in the matrix is 25."
+      }
+    ],
+    "constraints": "1 <= n <= 1000",
+    "difficulty": "Medium",
+    "category": "Matrix",
+    "order": 10,
+    "videoId": "sOME_VIDEO_ID",
+    "starterCode": "def kth_smallest_element(matrix, k):\n    # Write your code here\n    pass\n\n\nif __name__ == '__main__':\n    matrix = [[10, 20, 30], [15, 25, 35], [25, 29, 37]]\n    k = 4\n    result = kth_smallest_element(matrix, k)\n    print(result)",
+    "testCase": {
+      "input": ["[[10, 20, 30], [15, 25, 35], [25, 29, 37]], 4"],
+      "output": ["25"]
+    }
+  },
+  {
+    "id": "common-elements-all-rows-given-matrix",
+    "title": "Common Elements in All Rows of a Given Matrix",
+    "problemStatement": "Given an m x n matrix, find all common elements present in every row of the matrix.",
+    "examples": [
+      {
+        "id": 0,
+        "inputText": "[[1, 2, 1, 4, 8], [3, 7, 8, 5, 1], [8, 7, 7, 3, 1], [8, 1, 2, 7, 9]]",
+        "outputText": "[8, 1]",
+        "explanation": "Common elements in all rows are 8 and 1."
+      }
+    ],
+    "constraints": "1 <= m, n <= 100",
+    "difficulty": "Medium",
+    "category": "Matrix",
+    "order": 11,
+    "videoId": "sOME_VIDEO_ID",
+    "starterCode": "def common_elements(matrix):\n    # Write your code here\n    pass\n\n\nif __name__ == '__main__':\n    matrix = [[1, 2, 1, 4, 8], [3, 7, 8, 5, 1], [8, 7, 7, 3, 1], [8, 1, 2, 7, 9]]\n    result = common_elements(matrix)\n    print(result)",
+    "testCase": {
+      "input": [
+        "[[1, 2, 1, 4, 8], [3, 7, 8, 5, 1], [8, 7, 7, 3, 1], [8, 1, 2, 7, 9]]"
+      ],
+      "output": ["[8, 1]"]
+    }
+  },
+  {
+    "id": "reverse-string",
+    "title": "Reverse a String",
+    "problemStatement": "Write a program to reverse a given string.",
+    "examples": [
+      {
+        "id": 0,
+        "inputText": "'hello'",
+        "outputText": "'olleh'",
+        "explanation": "String 'hello' reversed to 'olleh'."
+      }
+    ],
+    "constraints": "1 <= s.length <= 1000",
+    "difficulty": "Easy",
+    "category": "String",
+    "order": 12,
+    "videoId": "sOME_VIDEO_ID",
+    "starterCode": "def reverse_string(s):\n    # Write your code here\n    pass\n\n\nif __name__ == '__main__':\n    s = 'hello'\n    result = reverse_string(s)\n    print(result)",
+    "testCase": {
+      "input": ["'hello'"],
+      "output": ["'olleh'"]
+    }
+  },
+  {
+    "id": "check-palindrome-string",
+    "title": "Check Whether a String is Palindrome or Not",
+    "problemStatement": "Write a program to check whether a given string is a palindrome or not.",
+    "examples": [
+      {
+        "id": 0,
+        "inputText": "'madam'",
+        "outputText": "True",
+        "explanation": "String 'madam' is a palindrome."
+      }
+    ],
+    "constraints": "1 <= s.length <= 1000",
+    "difficulty": "Easy",
+    "category": "String",
+    "order": 13,
+    "videoId": "sOME_VIDEO_ID",
+    "starterCode": "def is_palindrome(s):\n    # Write your code here\n    pass\n\n\nif __name__ == '__main__':\n    s = 'madam'\n    result = is_palindrome(s)\n    print(result)",
+    "testCase": {
+      "input": ["'madam'"],
+      "output": ["True"]
+    }
+  },
+  {
+    "id": "find-duplicate-characters-string",
+    "title": "Find Duplicate Characters in a String",
+    "problemStatement": "Write a program to find all duplicate characters in a given string.",
+    "examples": [
+      {
+        "id": 0,
+        "inputText": "'hello'",
+        "outputText": "['l']",
+        "explanation": "Character 'l' is duplicated in the string."
+      }
+    ],
+    "constraints": "1 <= s.length <= 1000",
+    "difficulty": "Easy",
+    "category": "String",
+    "order": 14,
+    "videoId": "sOME_VIDEO_ID",
+    "starterCode": "def find_duplicates(s):\n    # Write your code here\n    pass\n\n\nif __name__ == '__main__':\n    s = 'hello'\n    result = find_duplicates(s)\n    print(result)",
+    "testCase": {
+      "input": ["'hello'"],
+      "output": ["['l']"]
+    }
+  },
+  {
+    "id": "immutable-strings-java",
+    "title": "Why Strings are Immutable in Java?",
+    "problemStatement": "Explain why strings are immutable in Java.",
+    "constraints": "Explanation problem",
+    "difficulty": "Easy",
+    "category": "String",
+    "order": 15,
+    "videoId": "sOME_VIDEO_ID",
+    "starterCode": "",
+    "testCase": {
+      "input": [],
+      "output": []
+    }
+  },
+  {
+    "": { "$oid": "65813607db0ee3b9bc352d52" },
+    "id": "check-string-rotation",
+    "title": "Check Whether One String is a Rotation of Another",
+    "problemStatement": "Write a program to check whether one string is a rotation of another.",
+    "examples": [
+      {
+        "id": 0,
+        "inputText": "'ABCD', 'CDAB'",
+        "outputText": "True",
+        "explanation": "'CDAB' is a rotation of 'ABCD'."
+      }
+    ],
+    "constraints": "1 <= s1.length, s2.length <= 1000",
+    "difficulty": "Easy",
+    "category": "String",
+    "order": 16,
+    "videoId": "sOME_VIDEO_ID",
+    "starterCode": "def is_rotation(s1, s2):\n    # Write your code here\n    pass\n\n\nif __name__ == '__main__':\n    s1, s2 = 'ABCD', 'CDAB'\n    result = is_rotation(s1, s2)\n    print(result)",
+    "testCase": {
+      "input": ["'ABCD', 'CDAB'"],
+      "output": ["True"]
+    }
+  },
+  {
+    "id": "check-valid-shuffle-strings",
+    "title": "Check Whether a String is a Valid Shuffle of Two Strings",
+    "problemStatement": "Write a program to check whether a given string is a valid shuffle of two strings or not.",
+    "examples": [
+      {
+        "id": 0,
+        "inputText": "'XY', '12', 'X1Y2'",
+        "outputText": "True",
+        "explanation": "'X1Y2' is a valid shuffle of 'XY' and '12'."
+      }
+    ],
+    "constraints": "1 <= s1.length, s2.length <= 1000",
+    "difficulty": "Easy",
+    "category": "String",
+    "order": 17,
+    "videoId": "sOME_VIDEO_ID",
+    "starterCode": "def is_valid_shuffle(s1, s2, result):\n    # Write your code here\n    pass\n\n\nif __name__ == '__main__':\n    s1, s2, result = 'XY', '12', 'X1Y2'\n    result = is_valid_shuffle(s1, s2, result)\n    print(result)",
+    "testCase": {
+      "input": ["'XY', '12', 'X1Y2'"],
+      "output": ["True"]
+    }
+  },
+  {
+    "id": "count-and-say-problem",
+    "title": "Count and Say Problem",
+    "problemStatement": "The count-and-say sequence is a sequence of strings generated by applying the count-and-say algorithm recursively. Given an integer n, generate the nth sequence.",
+    "examples": [
+      {
+        "id": 0,
+        "inputText": "n = 4",
+        "outputText": "'1211'",
+        "explanation": "4th sequence in count-and-say sequence is '1211'."
+      }
+    ],
+    "constraints": "1 <= n <= 30",
+    "difficulty": "Easy",
+    "category": "String",
+    "order": 18,
+    "videoId": "sOME_VIDEO_ID",
+    "starterCode": "def count_and_say(n):\n    # Write your code here\n    pass\n\n\nif __name__ == '__main__':\n    n = 4\n    result = count_and_say(n)\n    print(result)",
+    "testCase": {
+      "input": ["4"],
+      "output": ["'1211'"]
+    }
+  },
+  {
+    "id": "longest-palindromic-substring",
+    "title": "Write a Program to Find the Longest Palindrome in a String (Longest Palindromic Substring)",
+    "problemStatement": "Write a program to find the longest palindromic substring in a given string.",
+    "examples": [
+      {
+        "id": 0,
+        "inputText": "'babad'",
+        "outputText": "'bab' or 'aba'",
+        "explanation": "Longest palindromic substring in 'babad' is 'bab' or 'aba'."
+      }
+    ],
+    "constraints": "1 <= s.length <= 1000",
+    "difficulty": "Medium",
+    "category": "String",
+    "order": 19,
+    "videoId": "sOME_VIDEO_ID",
+    "starterCode": "def longest_palindrome(s):\n    # Write your code here\n    pass\n\n\nif __name__ == '__main__':\n    s = 'babad'\n    result = longest_palindrome(s)\n    print(result)",
+    "testCase": {
+      "input": ["'babad'"],
+      "output": ["'bab' or 'aba'"]
+    }
+  },
+  {
+    "id": "word-break-problem",
+    "title": "Word Break Problem",
+    "problemStatement": "Given a non-empty string s and a dictionary wordDict containing a list of non-empty words, determine if s can be segmented into a space-separated sequence of one or more dictionary words.",
+    "examples": [
+      {
+        "id": 0,
+        "inputText": "'leetcode', ['leet', 'code']",
+        "outputText": "True",
+        "explanation": "'leetcode' can be segmented into 'leet code'."
+      }
+    ],
+    "constraints": "1 <= s.length <= 300, 1 <= wordDict.length <= 1000",
+    "difficulty": "Medium",
+    "category": "String",
+    "order": 20,
+    "videoId": "sOME_VIDEO_ID",
+    "starterCode": "def word_break(s, wordDict):\n    # Write your code here\n    pass\n\n\nif __name__ == '__main__':\n    s = 'leetcode'\n    wordDict = ['leet', 'code']\n    result = word_break(s, wordDict)\n    print(result)",
+    "testCase": {
+      "input": ["'leetcode', ['leet', 'code']"],
+      "output": ["True"]
+    }
+  },
+  {
+    "id": "rabin-karp-algorithm",
+    "title": "Rabin Karp Algorithm",
+    "problemStatement": "<Problem Statement>",
+    "constraints": "<Constraints>",
+    "difficulty": "Medium",
+    "category": "String",
+    "order": 21,
+    "videoId": "<Video ID>",
+    "starterCode": "def rabin_karp(text, pattern):\n    # Write your code here\n    pass\n\n\nif __name__ == '__main__':\n    text = 'abcde'\n    pattern = 'bcd'\n    result = rabin_karp(text, pattern)\n    print(result)",
+    "testCase": {
+      "input": ["'abcde', 'bcd'"],
+      "output": ["True"]
+    }
+  },
+  {
+    "id": "knuth-morris-pratt-algorithm",
+    "title": "Knuth-Morris-Pratt (KMP) Algorithm",
+    "problemStatement": "<Problem Statement>",
+    "constraints": "<Constraints>",
+    "difficulty": "Medium",
+    "category": "String",
+    "order": 22,
+    "videoId": "<Video ID>",
+    "starterCode": "def kmp(text, pattern):\n    # Write your code here\n    pass\n\n\nif __name__ == '__main__':\n    text = 'abcde'\n    pattern = 'bcd'\n    result = kmp(text, pattern)\n    print(result)",
+    "testCase": {
+      "input": ["'abcde', 'bcd'"],
+      "output": ["True"]
+    }
+  },
+  {
+    "id": "convert-sentence-to-mobile-keypad-sequence",
+    "title": "Convert a Sentence into its equivalent mobile numeric keypad sequence",
+    "problemStatement": "<Problem Statement>",
+    "constraints": "<Constraints>",
+    "difficulty": "Easy",
+    "category": "String",
+    "order": 23,
+    "videoId": "<Video ID>",
+    "starterCode": "def sentence_to_keypad_sequence(sentence):\n    # Write your code here\n    pass\n\n\nif __name__ == '__main__':\n    sentence = 'Hello World'\n    result = sentence_to_keypad_sequence(sentence)\n    print(result)",
+    "testCase": {
+      "input": ["'Hello World'"],
+      "output": ["'4433555555666096667775553'"]
+    }
+  },
+  {
+    "id": "minimum-bracket-reversals",
+    "title": "Minimum number of bracket reversals needed to make an expression balanced",
+    "problemStatement": "<Problem Statement>",
+    "constraints": "<Constraints>",
+    "difficulty": "Medium",
+    "category": "String",
+    "order": 24,
+    "videoId": "<Video ID>",
+    "starterCode": "def min_bracket_reversals(expression):\n    # Write your code here\n    pass\n\n\nif __name__ == '__main__':\n    expression = '{{{{}}}}}}'\n    result = min_bracket_reversals(expression)\n    print(result)",
+    "testCase": {
+      "input": ["'{{{{}}}}}}'"],
+      "output": ["2"]
+    }
+  },
+  {
+    "id": "count-all-palindromic-subsequences",
+    "title": "Count All Palindromic Subsequences in a given String",
+    "problemStatement": "<Problem Statement>",
+    "constraints": "<Constraints>",
+    "difficulty": "Hard",
+    "category": "String",
+    "order": 25,
+    "videoId": "<Video ID>",
+    "starterCode": "def count_palindromic_subsequences(s):\n    # Write your code here\n    pass\n\n\nif __name__ == '__main__':\n    s = 'abcd'\n    result = count_palindromic_subsequences(s)\n    print(result)",
+    "testCase": {
+      "input": ["'abcd'"],
+      "output": ["4"]
+    }
+  },
+  {
+    "id": "count-of-string-in-2d-array",
+    "title": "Count of number of given string in 2D character array",
+    "problemStatement": "<Problem Statement>",
+    "constraints": "<Constraints>",
+    "difficulty": "Medium",
+    "category": "String",
+    "order": 26,
+    "videoId": "<Video ID>",
+    "starterCode": "def count_string_in_2d_array(matrix, target):\n    # Write your code here\n    pass\n\n\nif __name__ == '__main__':\n    matrix = [['a','b','c'],['d','e','f'],['g','h','i']]\n    target = 'abc'\n    result = count_string_in_2d_array(matrix, target)\n    print(result)",
+    "testCase": {
+      "input": ["[['a','b','c'],['d','e','f'],['g','h','i']], 'abc'"],
+      "output": ["1"]
+    }
+  },
+  {
+    "id": "search-word-in-2d-grid",
+    "title": "Search a Word in a 2D Grid of characters",
+    "problemStatement": "<Problem Statement>",
+    "constraints": "<Constraints>",
+    "difficulty": "Hard",
+    "category": "String",
+    "order": 27,
+    "videoId": "<Video ID>",
+    "starterCode": "def search_word_in_grid(grid, word):\n    # Write your code here\n    pass\n\n\nif __name__ == '__main__':\n    grid = [['A','B','C','E'],['S','F','C','S'],['A','D','E','E']]\n    word = 'ABCCED'\n    result = search_word_in_grid(grid, word)\n    print(result)",
+    "testCase": {
+      "input": [
+        "[['A','B','C','E'],['S','F','C','S'],['A','D','E','E']], 'ABCCED'"
+      ],
+      "output": ["True"]
+    }
+  },
+  {
+    "id": "boyer-moore-algorithm",
+    "title": "Boyer Moore Algorithm for Pattern Searching",
+    "problemStatement": "<Problem Statement>",
+    "constraints": "<Constraints>",
+    "difficulty": "Medium",
+    "category": "String",
+    "order": 28,
+    "videoId": "<Video ID>",
+    "starterCode": "def boyer_moore(text, pattern):\n    # Write your code here\n    pass\n\n\nif __name__ == '__main__':\n    text = 'abcde'\n    pattern = 'bcd'\n    result = boyer_moore(text, pattern)\n    print(result)",
+    "testCase": {
+      "input": ["'abcde', 'bcd'"],
+      "output": ["True"]
+    }
+  },
+  {
+    "id": "convert-roman-numerals-to-decimal",
+    "title": "Converting Roman Numerals to Decimal",
+    "problemStatement": "<Problem Statement>",
+    "constraints": "<Constraints>",
+    "difficulty": "Medium",
+    "category": "String",
+    "order": 29,
+    "videoId": "<Video ID>",
+    "starterCode": "def roman_to_decimal(roman):\n    # Write your code here\n    pass\n\n\nif __name__ == '__main__':\n    roman = 'XXI'\n    result = roman_to_decimal(roman)\n    print(result)",
+    "testCase": {
+      "input": ["'XXI'"],
+      "output": ["21"]
+    }
+  },
+  {
+    "id": "longest-common-prefix",
+    "title": "Longest Common Prefix",
+    "problemStatement": "<Problem Statement>",
+    "constraints": "<Constraints>",
+    "difficulty": "Easy",
+    "category": "String",
+    "order": 30,
+    "videoId": "<Video ID>",
+    "starterCode": "def longest_common_prefix(strs):\n    # Write your code here\n    pass\n\n\nif __name__ == '__main__':\n    strs = ['flower', 'flow', 'flight']\n    result = longest_common_prefix(strs)\n    print(result)",
+    "testCase": {
+      "input": ["['flower', 'flow', 'flight']"],
+      "output": ["'fl'"]
+    }
+  },
+  {
+    "id": "number-of-flips-to-make-binary-string-alternate",
+    "title": "Number of flips to make binary string alternate",
+    "problemStatement": "<Problem Statement>",
+    "constraints": "<Constraints>",
+    "difficulty": "Medium",
+    "category": "String",
+    "order": 31,
+    "videoId": "<Video ID>",
+    "starterCode": "def flips_to_make_alternate(s):\n    # Write your code here\n    pass\n\n\nif __name__ == '__main__':\n    s = '0001010111'\n    result = flips_to_make_alternate(s)\n    print(result)",
+    "testCase": {
+      "input": ["'0001010111'"],
+      "output": ["2"]
+    }
+  },
+  {
+    "id": "find-first-repeated-word",
+    "title": "Find the first repeated word in string",
+    "problemStatement": "<Problem Statement>",
+    "constraints": "<Constraints>",
+    "difficulty": "Easy",
+    "category": "String",
+    "order": 32,
+    "videoId": "<Video ID>",
+    "starterCode": "def first_repeated_word(s):\n    # Write your code here\n    pass\n\n\nif __name__ == '__main__':\n    s = 'the quick brown fox jumps over the lazy dog the'\n    result = first_repeated_word(s)\n    print(result)",
+    "testCase": {
+      "input": ["'the quick brown fox jumps over the lazy dog the'"],
+      "output": ["the"]
+    }
+  },
+  {
+    "id": "minimum-swaps-for-bracket-balancing",
+    "title": "Minimum number of swaps for bracket balancing",
+    "problemStatement": "<Problem Statement>",
+    "constraints": "<Constraints>",
+    "difficulty": "Medium",
+    "category": "String",
+    "order": 33,
+    "videoId": "<Video ID>",
+    "starterCode": "def min_swaps_for_balancing(expression):\n    # Write your code here\n    pass\n\n\nif __name__ == '__main__':\n    expression = '[]][[]'\n    result = min_swaps_for_balancing(expression)\n    print(result)",
+    "testCase": {
+      "input": ["'[]][[]'"],
+      "output": ["2"]
+    }
+  },
+  {
+    "id": "longest-common-subsequence",
+    "title": "Find the longest common subsequence between two strings",
+    "problemStatement": "<Problem Statement>",
+    "constraints": "<Constraints>",
+    "difficulty": "Medium",
+    "category": "String",
+    "order": 34,
+    "videoId": "<Video ID>",
+    "starterCode": "def longest_common_subsequence(s1, s2):\n    # Write your code here\n    pass\n\n\nif __name__ == '__main__':\n    s1 = 'abcde'\n    s2 = 'ace'\n    result = longest_common_subsequence(s1, s2)\n    print(result)",
+    "testCase": {
+      "input": ["'abcde', 'ace'"],
+      "output": ["ace"]
+    }
+  },
+  {
+    "id": "generate-valid-ip-addresses",
+    "title": "Program to generate all possible valid IP addresses from given  string",
+    "problemStatement": "<Problem Statement>",
+    "constraints": "<Constraints>",
+    "difficulty": "Hard",
+    "category": "String",
+    "order": 35,
+    "videoId": "<Video ID>",
+    "starterCode": "def generate_valid_ips(s):\n    # Write your code here\n    pass\n\n\nif __name__ == '__main__':\n    s = '25525511135'\n    result = generate_valid_ips(s)\n    print(result)",
+    "testCase": {
+      "input": ["'25525511135'"],
+      "output": ["['255.255.11.135', '255.255.111.35']"]
+    }
+  },
+  {
+    "id": "smallest-window-containing-all-characters",
+    "title": "Write a program tofind the smallest window that contains all characters of string itself",
+    "problemStatement": "<Problem Statement>",
+    "constraints": "<Constraints>",
+    "difficulty": "Hard",
+    "category": "String",
+    "order": 36,
+    "videoId": "<Video ID>",
+    "starterCode": "def smallest_window_with_all_chars(s):\n    # Write your code here\n    pass\n\n\nif __name__ == '__main__':\n    s = 'aabcbcdbca'\n    result = smallest_window_with_all_chars(s)\n    print(result)",
+    "testCase": {
+      "input": ["'aabcbcdbca'"],
+      "output": ["4"]
+    }
+  },
+  {
+    "id": "rearrange-characters-no-adjacent-same",
+    "title": "Rearrange characters in a string such that no two adjacent are same",
+    "problemStatement": "<Problem Statement>",
+    "constraints": "<Constraints>",
+    "difficulty": "Medium",
+    "category": "String",
+    "order": 37,
+    "videoId": "<Video ID>",
+    "starterCode": "def rearrange_no_adjacent_same(s):\n    # Write your code here\n    pass\n\n\nif __name__ == '__main__':\n    s = 'aaabc'\n    result = rearrange_no_adjacent_same(s)\n    print(result)",
+    "testCase": {
+      "input": ["'aaabc'"],
+      "output": ["abaca"]
+    }
+  },
+  {
+    "id": "min-chars-to-add-for-palindrome",
+    "title": "Minimum characters to be added at front to make string palindrome",
+    "problemStatement": "<Problem Statement>",
+    "constraints": "<Constraints>",
+    "difficulty": "Medium",
+    "category": "String",
+    "order": 38,
+    "videoId": "<Video ID>",
+    "starterCode": "def min_chars_to_make_palindrome(s):\n    # Write your code here\n    pass\n\n\nif __name__ == '__main__':\n    s = 'ABC'\n    result = min_chars_to_make_palindrome(s)\n    print(result)",
+    "testCase": {
+      "input": ["'ABC'"],
+      "output": ["2"]
+    }
+  },
+  {
+    "id": "print-all-anagrams-together",
+    "title": "Given a sequence of words, print all anagrams together",
+    "problemStatement": "<Problem Statement>",
+    "constraints": "<Constraints>",
+    "difficulty": "Medium",
+    "category": "String",
+    "order": 39,
+    "videoId": "<Video ID>",
+    "starterCode": "def print_anagrams_together(words):\n    # Write your code here\n    pass\n\n\nif __name__ == '__main__':\n    words = ['cat', 'dog', 'tac', 'god', 'act']\n    print_anagrams_together(words)",
+    "testCase": {
+      "input": ["['cat', 'dog', 'tac', 'god', 'act']"],
+      "output": ["['cat', 'tac', 'act', 'dog', 'god']"]
+    }
+  },
+  {
+    "id": "smallest-window-with-all-characters-of-another-string",
+    "title": "Find the smallest window in a string containing all characters of another string",
+    "problemStatement": "<Problem Statement>",
+    "constraints": "<Constraints>",
+    "difficulty": "Medium",
+    "category": "String",
+    "order": 40,
+    "videoId": "<Video ID>",
+    "starterCode": "def smallest_window_with_all_chars_of_other(s, t):\n    # Write your code here\n    pass\n\n\nif __name__ == '__main__':\n    s = 'this is a test string'\n    t = 'tist'\n    result = smallest_window_with_all_chars_of_other(s, t)\n    print(result)",
+    "testCase": {
+      "input": ["'this is a test string', 'tist'"],
+      "output": ["t stri"]
+    }
+  },
+  {
+    "id": "recursively-remove-all-adjacent-duplicates",
+    "title": "Recursively remove all adjacent duplicates",
+    "problemStatement": "<Problem Statement>",
+    "constraints": "<Constraints>",
+    "difficulty": "Medium",
+    "category": "String",
+    "order": 41,
+    "videoId": "<Video ID>",
+    "starterCode": "def remove_adjacent_duplicates(s):\n    # Write your code here\n    pass\n\n\nif __name__ == '__main__':\n    s = 'azxxzy'\n    result = remove_adjacent_duplicates(s)\n    print(result)",
+    "testCase": {
+      "input": ["'azxxzy'"],
+      "output": ["ay"]
+    }
+  },
+  {
+    "id": "wildcard-string-matching",
+    "title": "String matching where one string contains wildcard characters",
+    "problemStatement": "<Problem Statement>",
+    "constraints": "<Constraints>",
+    "difficulty": "Hard",
+    "category": "String",
+    "order": 42,
+    "videoId": "<Video ID>",
+    "starterCode": "def wildcard_matching(s, p):\n    # Write your code here\n    pass\n\n\nif __name__ == '__main__':\n    s = 'ge*ks'\n    p = 'ge?ks*'\n    result = wildcard_matching(s, p)\n    print(result)",
+    "testCase": {
+      "input": ["'ge*ks', 'ge?ks*'"],
+      "output": ["Yes"]
+    }
+  },
+  {
+    "id": "customers-who-could-not-get-computer",
+    "title": "Function to find Number of customers who could not get a computer",
+    "problemStatement": "<Problem Statement>",
+    "constraints": "<Constraints>",
+    "difficulty": "Medium",
+    "category": "String",
+    "order": 43,
+    "videoId": "<Video ID>",
+    "starterCode": "def customers_without_computer(arr, n):\n    # Write your code here\n    pass\n\n\nif __name__ == '__main__':\n    arr = 'ABBAJJKZKZ'\n    n = 3\n    result = customers_without_computer(arr, n)\n    print(result)",
+    "testCase": {
+      "input": ["'ABBAJJKZKZ', 3"],
+      "output": ["3"]
+    }
+  },
+  {
+    "id": "transform-one-string-to-another",
+    "title": "Transform One String to Another using Minimum Number of Given Operation",
+    "problemStatement": "<Problem Statement>",
+    "constraints": "<Constraints>",
+    "difficulty": "Hard",
+    "category": "String",
+    "order": 44,
+    "videoId": "<Video ID>",
+    "starterCode": "def min_operations_to_transform(s1, s2):\n    # Write your code here\n    pass\n\n\nif __name__ == '__main__':\n    s1 = 'EACBD'\n    s2 = 'EABCD'\n    result = min_operations_to_transform(s1, s2)\n    print(result)",
+    "testCase": {
+      "input": ["'EACBD', 'EABCD'"],
+      "output": ["3"]
+    }
+  },
+  {
+    "id": "check-if-strings-are-isomorphic",
+    "title": "Check if two given strings are isomorphic to each other",
+    "problemStatement": "<Problem Statement>",
+    "constraints": "<Constraints>",
+    "difficulty": "Easy",
+    "category": "String",
+    "order": 45,
+    "videoId": "<Video ID>",
+    "starterCode": "def isomorphic(s1, s2):\n    # Write your code here\n    pass\n\n\nif __name__ == '__main__':\n    s1 = 'egg'\n    s2 = 'add'\n    result = isomorphic(s1, s2)\n    print(result)",
+    "testCase": {
+      "input": ["'egg', 'add'"],
+      "output": ["True"]
+    }
+  },
+  {
+    "id": "print-all-sentences-from-list-of-word-list",
+    "title": "Recursively print all sentences that can be formed from list of word list",
+    "problemStatement": "<Problem Statement>",
+    "constraints": "<Constraints>",
+    "difficulty": "Hard",
+    "category": "String",
+    "order": 46,
+    "videoId": "<Video ID>",
+    "starterCode": "def print_all_sentences(word_lists):\n    # Write your code here\n    pass\n\n\nif __name__ == '__main__':\n    word_lists = [['you', 'we'], ['have', 'are'], ['sleep', 'eat', 'drink']]\n    print_all_sentences(word_lists)",
+    "testCase": {
+      "input": ["[['you', 'we'], ['have', 'are'], ['sleep', 'eat', 'drink']]"],
+      "output": [
+        "you have sleep",
+        "you have eat",
+        "you have drink",
+        "you are sleep",
+        "you are eat",
+        "you are drink",
+        "we have sleep",
+        "we have eat",
+        "we have drink",
+        "we are sleep",
+        "we are eat",
+        "we are drink"
+      ]
+    }
+  },
+  {
+    "id": "find-first-and-last-positions-of-an-element-in-a-sorted-array",
+    "title": "Find First and Last Positions of an Element in a Sorted Array",
+    "problemStatement": "<Problem Statement>",
+    "constraints": "<Constraints>",
+    "difficulty": "Medium",
+    "category": "Array",
+    "order": 47,
+    "videoId": "<Video ID>",
+    "starterCode": "def search_range(nums, target):\n    # Write your code here\n    pass\n\n\nif __name__ == '__main__':\n    nums = [5, 7, 7, 8, 8, 10]\n    target = 8\n    result = search_range(nums, target)\n    print(result)",
+    "testCase": {
+      "input": ["[5, 7, 7, 8, 8, 10], 8"],
+      "output": ["[3, 4]"]
+    }
+  },
+  {
+    "id": "find-a-fixed-point",
+    "title": "Find a Fixed Point (Value equal to index) in a given array",
+    "problemStatement": "<Problem Statement>",
+    "constraints": "<Constraints>",
+    "difficulty": "Easy",
+    "category": "Array",
+    "order": 48,
+    "videoId": "<Video ID>",
+    "starterCode": "def fixed_point(arr):\n    # Write your code here\n    pass\n\n\nif __name__ == '__main__':\n    arr = [-10, -5, 0, 3, 7]\n    result = fixed_point(arr)\n    print(result)",
+    "testCase": {
+      "input": ["[-10, -5, 0, 3, 7]"],
+      "output": ["3"]
+    }
+  },
+  {
+    "id": "search-in-rotated-sorted-array",
+    "title": "Search in a Rotated Sorted Array",
+    "problemStatement": "<Problem Statement>",
+    "constraints": "<Constraints>",
+    "difficulty": "Medium",
+    "category": "Array",
+    "order": 49,
+    "videoId": "<Video ID>",
+    "starterCode": "def search_rotated(nums, target):\n    # Write your code here\n    pass\n\n\nif __name__ == '__main__':\n    nums = [4, 5, 6, 7, 0, 1, 2]\n    target = 0\n    result = search_rotated(nums, target)\n    print(result)",
+    "testCase": {
+      "input": ["[4, 5, 6, 7, 0, 1, 2], 0"],
+      "output": ["4"]
+    }
+  },
+  {
+    "id": "square-root-of-an-integer",
+    "title": "Square Root of an Integer",
+    "problemStatement": "<Problem Statement>",
+    "constraints": "<Constraints>",
+    "difficulty": "Medium",
+    "category": "Math",
+    "order": 50,
+    "videoId": "<Video ID>",
+    "starterCode": "def square_root(n):\n    # Write your code here\n    pass\n\n\nif __name__ == '__main__':\n    n = 16\n    result = square_root(n)\n    print(result)",
+    "testCase": {
+      "input": ["16"],
+      "output": ["4"]
+    }
+  },
+  {
+    "id": "maximum-and-minimum-of-an-array",
+    "title": "Maximum and Minimum of an Array using Minimum Number of Comparisons",
+    "problemStatement": "<Problem Statement>",
+    "constraints": "<Constraints>",
+    "difficulty": "Medium",
+    "category": "Array",
+    "order": 51,
+    "videoId": "<Video ID>",
+    "starterCode": "def find_max_min(nums):\n    # Write your code here\n    pass\n\n\nif __name__ == '__main__':\n    nums = [1000, 11, 445, 1, 330, 3000]\n    result = find_max_min(nums)\n    print(result)",
+    "testCase": {
+      "input": ["[1000, 11, 445, 1, 330, 3000]"],
+      "output": ["(1, 3000)"]
+    }
+  },
+  {
+    "id": "optimum-location-of-point-to-minimize-total-distance",
+    "title": "Optimum Location of Point to Minimize Total Distance",
+    "problemStatement": "<Problem Statement>",
+    "constraints": "<Constraints>",
+    "difficulty": "Hard",
+    "category": "Array",
+    "order": 52,
+    "videoId": "<Video ID>",
+    "starterCode": "def min_total_distance(nums):\n    # Write your code here\n    pass\n\n\nif __name__ == '__main__':\n    nums = [1, 3, 4]\n    result = min_total_distance(nums)\n    print(result)",
+    "testCase": {
+      "input": ["[1, 3, 4]"],
+      "output": ["3"]
+    }
+  },
+  {
+    "id": "find-the-repeating-and-the-missing",
+    "title": "Find the Repeating and the Missing",
+    "problemStatement": "<Problem Statement>",
+    "constraints": "<Constraints>",
+    "difficulty": "Medium",
+    "category": "Array",
+    "order": 53,
+    "videoId": "<Video ID>",
+    "starterCode": "def find_missing_repeating(nums):\n    # Write your code here\n    pass\n\n\nif __name__ == '__main__':\n    nums = [3, 1, 3]\n    result = find_missing_repeating(nums)\n    print(result)",
+    "testCase": {
+      "input": ["[3, 1, 3]"],
+      "output": ["(3, 2)"]
+    }
+  },
+  {
+    "id": "find-majority-element",
+    "title": "Find Majority Element",
+    "problemStatement": "<Problem Statement>",
+    "constraints": "<Constraints>",
+    "difficulty": "Easy",
+    "category": "Array",
+    "order": 54,
+    "videoId": "<Video ID>",
+    "starterCode": "def majority_element(nums):\n    # Write your code here\n    pass\n\n\nif __name__ == '__main__':\n    nums = [3, 3, 4, 2, 4, 4, 2, 4, 4]\n    result = majority_element(nums)\n    print(result)",
+    "testCase": {
+      "input": ["[3, 3, 4, 2, 4, 4, 2, 4, 4]"],
+      "output": ["4"]
+    }
+  },
+  {
+    "id": "searching-in-an-array-where-adjacent-differ-by-at-most-k",
+    "title": "Searching in an Array where Adjacent Differ by at most k",
+    "problemStatement": "<Problem Statement>",
+    "constraints": "<Constraints>",
+    "difficulty": "Medium",
+    "category": "Array",
+    "order": 55,
+    "videoId": "<Video ID>",
+    "starterCode": "def search_k_diff(nums, k, target):\n    # Write your code here\n    pass\n\n\nif __name__ == '__main__':\n    nums = [4, 5, 6, 7, 6]\n    k = 1\n    target = 6\n    result = search_k_diff(nums, k, target)\n    print(result)",
+    "testCase": {
+      "input": ["[4, 5, 6, 7, 6], 1, 6"],
+      "output": ["2"]
+    }
+  },
+  {
+    "id": "find-a-pair-with-a-given-difference",
+    "title": "Find a Pair with a Given Difference",
+    "problemStatement": "<Problem Statement>",
+    "constraints": "<Constraints>",
+    "difficulty": "Easy",
+    "category": "Array",
+    "order": 56,
+    "videoId": "<Video ID>",
+    "starterCode": "def find_pair_with_difference(nums, k):\n    # Write your code here\n    pass\n\n\nif __name__ == '__main__':\n    nums = [1, 5, 3, 4, 2]\n    k = 3\n    result = find_pair_with_difference(nums, k)\n    print(result)",
+    "testCase": {
+      "input": ["[1, 5, 3, 4, 2], 3"],
+      "output": ["2"]
+    }
+  },
+  {
+    "id": "find-four-elements-that-sum-to-a-given-value",
+    "title": "Find Four Elements that Sum to a Given Value",
+    "problemStatement": "<Problem Statement>",
+    "constraints": "<Constraints>",
+    "difficulty": "Medium",
+    "category": "Array",
+    "order": 57,
+    "videoId": "<Video ID>",
+    "starterCode": "def four_sum(nums, target):\n    # Write your code here\n    pass\n\n\nif __name__ == '__main__':\n    nums = [1, 0, -1, 0, -2, 2]\n    target = 0\n    result = four_sum(nums, target)\n    print(result)",
+    "testCase": {
+      "input": ["[1, 0, -1, 0, -2, 2], 0"],
+      "output": ["[[-2, -1, 1, 2], [-2, 0, 0, 2], [-1, 0, 0, 1]]"]
+    }
+  },
+  {
+    "id": "maximum-sum-such-that-no-two-elements-are-adjacent",
+    "title": "Maximum Sum such that No Two Elements are Adjacent",
+    "problemStatement": "<Problem Statement>",
+    "constraints": "<Constraints>",
+    "difficulty": "Medium",
+    "category": "Array",
+    "order": 58,
+    "videoId": "<Video ID>",
+    "starterCode": "def max_sum_no_adjacent(nums):\n    # Write your code here\n    pass\n\n\nif __name__ == '__main__':\n    nums = [5, 5, 10, 100, 10, 5]\n    result = max_sum_no_adjacent(nums)\n    print(result)",
+    "testCase": {
+      "input": ["[5, 5, 10, 100, 10, 5]"],
+      "output": ["110"]
+    }
+  },
+  {
+    "id": "count-triplet-with-sum-smaller-than-a-given-value",
+    "title": "Count Triplet with Sum Smaller than a Given Value",
+    "problemStatement": "<Problem Statement>",
+    "constraints": "<Constraints>",
+    "difficulty": "Medium",
+    "category": "Array",
+    "order": 59,
+    "videoId": "<Video ID>",
+    "starterCode": "def count_triplets(nums, target):\n    # Write your code here\n    pass\n\n\nif __name__ == '__main__':\n    nums = [-2, 0, 1, 3]\n    target = 2\n    result = count_triplets(nums, target)\n    print(result)",
+    "testCase": {
+      "input": ["[-2, 0, 1, 3], 2"],
+      "output": ["2"]
+    }
+  },
+  {
+    "id": "merge-two-sorted-arrays",
+    "title": "Merge Two Sorted Arrays",
+    "problemStatement": "<Problem Statement>",
+    "constraints": "<Constraints>",
+    "difficulty": "Easy",
+    "category": "Array",
+    "order": 60,
+    "videoId": "<Video ID>",
+    "starterCode": "def merge(nums1, m, nums2, n):\n    # Write your code here\n    pass\n\n\nif __name__ == '__main__':\n    nums1 = [1, 2, 3, 0, 0, 0]\n    m = 3\n    nums2 = [2, 5, 6]\n    n = 3\n    merge(nums1, m, nums2, n)\n    print(nums1)",
+    "testCase": {
+      "input": ["[1, 2, 3, 0, 0, 0], 3, [2, 5, 6], 3"],
+      "output": ["[1, 2, 2, 3, 5, 6]"]
+    }
+  },
+  {
+    "id": "print-all-subarrays-with-zero-sum",
+    "title": "Print All Subarrays with 0 Sum",
+    "problemStatement": "<Problem Statement>",
+    "constraints": "<Constraints>",
+    "difficulty": "Medium",
+    "category": "Array",
+    "order": 61,
+    "videoId": "<Video ID>",
+    "starterCode": "def subarrays_zero_sum(nums):\n    # Write your code here\n    pass\n\n\nif __name__ == '__main__':\n    nums = [4, 2, -3, -1, 0, 4]\n    subarrays_zero_sum(nums)",
+    "testCase": {
+      "input": ["[4, 2, -3, -1, 0, 4]"],
+      "output": ["[[2, -3, -1], [-3, -1, 0, 4], [0]]"]
+    }
+  },
+  {
+    "id": "product-array-puzzle",
+    "title": "Product Array Puzzle",
+    "problemStatement": "<Problem Statement>",
+    "constraints": "<Constraints>",
+    "difficulty": "Medium",
+    "category": "Array",
+    "order": 62,
+    "videoId": "<Video ID>",
+    "starterCode": "def product_puzzle(nums):\n    # Write your code here\n    pass\n\n\nif __name__ == '__main__':\n    nums = [10, 3, 5, 6, 2]\n    result = product_puzzle(nums)\n    print(result)",
+    "testCase": {
+      "input": ["[10, 3, 5, 6, 2]"],
+      "output": ["[180, 600, 360, 300, 900]"]
+    }
+  },
+  {
+    "id": "sort-array-according-to-count-of-set-bits",
+    "title": "Sort Array According to Count of Set Bits",
+    "problemStatement": "<Problem Statement>",
+    "constraints": "<Constraints>",
+    "difficulty": "Medium",
+    "category": "Array",
+    "order": 63,
+    "videoId": "<Video ID>",
+    "starterCode": "def sort_by_set_bits(nums):\n    # Write your code here\n    pass\n\n\nif __name__ == '__main__':\n    nums = [5, 2, 3, 9, 4, 6, 7, 15, 32]\n    result = sort_by_set_bits(nums)\n    print(result)",
+    "testCase": {
+      "input": ["[5, 2, 3, 9, 4, 6, 7, 15, 32]"],
+      "output": ["[2, 4, 3, 5, 6, 9, 7, 15, 32]"]
+    }
+  },
+  {
+    "id": "minimum-number-of-swaps-required-to-sort-the-array",
+    "title": "Minimum Number of Swaps Required to Sort the Array",
+    "problemStatement": "<Problem Statement>",
+    "constraints": "<Constraints>",
+    "difficulty": "Medium",
+    "category": "Array",
+    "order": 64,
+    "videoId": "<Video ID>",
+    "starterCode": "def min_swaps(arr):\n    # Write your code here\n    pass\n\n\nif __name__ == '__main__':\n    arr = [5, 4, 3, 2, 1]\n    result = min_swaps(arr)\n    print(result)",
+    "testCase": {
+      "input": ["[5, 4, 3, 2, 1]"],
+      "output": ["2"]
+    }
+  },
+  {
+    "id": "bishu-and-soldiers",
+    "title": "Bishu and Soldiers",
+    "problemStatement": "<Problem Statement>",
+    "constraints": "<Constraints>",
+    "difficulty": "Medium",
+    "category": "Array",
+    "order": 65,
+    "videoId": "<Video ID>",
+    "starterCode": "def bishu_and_soldiers(soldiers, powers, queries):\n    # Write your code here\n    pass\n\n\nif __name__ == '__main__':\n    soldiers = 5\n    powers = [1, 2, 3, 4, 5]\n    queries = [3, 10, 2]\n    result = bishu_and_soldiers(soldiers, powers, queries)\n    print(result)",
+    "testCase": {
+      "input": ["5", "[1, 2, 3, 4, 5]", "[3, 10, 2]"],
+      "output": ["2"]
+    }
+  },
+  {
+    "id": "rasta-and-kheshtak",
+    "title": "Rasta and Kheshtak",
+    "problemStatement": "<Problem Statement>",
+    "constraints": "<Constraints>",
+    "difficulty": "Medium",
+    "category": "Array",
+    "order": 66,
+    "videoId": "<Video ID>",
+    "starterCode": "def rasta_and_kheshtak(arr, n):\n    # Write your code here\n    pass\n\n\nif __name__ == '__main__':\n    arr = [1, 3, 2, 5, 3]\n    n = 5\n    result = rasta_and_kheshtak(arr, n)\n    print(result)",
+    "testCase": {
+      "input": ["[1, 3, 2, 5, 3]", "5"],
+      "output": ["2"]
+    }
+  },
+  {
+    "id": "kth-smallest-number-again",
+    "title": "Kth Smallest Number Again",
+    "problemStatement": "<Problem Statement>",
+    "constraints": "<Constraints>",
+    "difficulty": "Medium",
+    "category": "Array",
+    "order": 67,
+    "videoId": "<Video ID>",
+    "starterCode": "def kth_smallest_number(arr, k, queries):\n    # Write your code here\n    pass\n\n\nif __name__ == '__main__':\n    arr = [2, 3, 4, 5, 6]\n    k = 3\n    queries = [[1, 3], [2, 5], [3, 4]]\n    result = kth_smallest_number(arr, k, queries)\n    print(result)",
+    "testCase": {
+      "input": ["[2, 3, 4, 5, 6]", "3", "[[1, 3], [2, 5], [3, 4]]"],
+      "output": ["3", "4", "5"]
+    }
+  },
+  {
+    "id": "find-pivot-element-in-a-sorted-array",
+    "title": "Find Pivot Element in a Sorted Array",
+    "problemStatement": "<Problem Statement>",
+    "constraints": "<Constraints>",
+    "difficulty": "Medium",
+    "category": "Array",
+    "order": 68,
+    "videoId": "<Video ID>",
+    "starterCode": "def find_pivot(arr, low, high):\n    # Write your code here\n    pass\n\n\nif __name__ == '__main__':\n    arr = [5, 6, 7, 8, 9, 10, 1, 2, 3]\n    result = find_pivot(arr, 0, len(arr) - 1)\n    print(result)",
+    "testCase": {
+      "input": ["[5, 6, 7, 8, 9, 10, 1, 2, 3]", "0", "8"],
+      "output": ["6"]
+    }
+  },
+  {
+    "id": "k-th-element-of-two-sorted-arrays",
+    "title": "K-th Element of Two Sorted Arrays",
+    "problemStatement": "<Problem Statement>",
+    "constraints": "<Constraints>",
+    "difficulty": "Hard",
+    "category": "Array",
+    "order": 69,
+    "videoId": "<Video ID>",
+    "starterCode": "def kth_element(nums1, nums2, m, n, k):\n    # Write your code here\n    pass\n\n\nif __name__ == '__main__':\n    nums1 = [2, 3, 6, 7, 9]\n    nums2 = [1, 4, 8, 10]\n    m = 5\n    n = 4\n    k = 5\n    result = kth_element(nums1, nums2, m, n, k)\n    print(result)",
+    "testCase": {
+      "input": ["[2, 3, 6, 7, 9]", "[1, 4, 8, 10]", "5", "4", "5"],
+      "output": ["6"]
+    }
+  },
+  {
+    "id": "aggressive-cows",
+    "title": "Aggressive Cows",
+    "problemStatement": "<Problem Statement>",
+    "constraints": "<Constraints>",
+    "difficulty": "Hard",
+    "category": "Array",
+    "order": 70,
+    "videoId": "<Video ID>",
+    "starterCode": "def aggressive_cows(arr, n, c):\n    # Write your code here\n    pass\n\n\nif __name__ == '__main__':\n    arr = [1, 2, 4, 8, 9]\n    n = 5\n    c = 3\n    result = aggressive_cows(arr, n, c)\n    print(result)",
+    "testCase": {
+      "input": ["[1, 2, 4, 8, 9]", "5", "3"],
+      "output": ["3"]
+    }
+  },
+  {
+    "id": "book-allocation-problem",
+    "title": "Book Allocation Problem",
+    "problemStatement": "<Problem Statement>",
+    "constraints": "<Constraints>",
+    "difficulty": "Medium",
+    "category": "Array",
+    "order": 71,
+    "videoId": "<Video ID>",
+    "starterCode": "def min_pages(arr, n, m):\n    # Write your code here\n    pass\n\n\nif __name__ == '__main__':\n    arr = [12, 34, 67, 90]\n    n = 4\n    m = 2\n    result = min_pages(arr, n, m)\n    print(result)",
+    "testCase": {
+      "input": ["[12, 34, 67, 90]", "4", "2"],
+      "output": ["113"]
+    }
+  },
+  {
+    "id": "ekospoj",
+    "title": "EKOSPOJ",
+    "problemStatement": "<Problem Statement>",
+    "constraints": "<Constraints>",
+    "difficulty": "Medium",
+    "category": "Array",
+    "order": 72,
+    "videoId": "<Video ID>",
+    "starterCode": "def woods_collected(arr, n, m):\n    # Write your code here\n    pass\n\n\nif __name__ == '__main__':\n    arr = [4, 42, 40, 26, 46]\n    n = 5\n    m = 20\n    result = woods_collected(arr, n, m)\n    print(result)",
+    "testCase": {
+      "input": ["[4, 42, 40, 26, 46]", "5", "20"],
+      "output": ["36"]
+    }
+  },
+  {
+    "id": "job-scheduling-algo",
+    "title": "Job Scheduling Algorithm",
+    "problemStatement": "<Problem Statement>",
+    "constraints": "<Constraints>",
+    "difficulty": "Hard",
+    "category": "Array",
+    "order": 73,
+    "videoId": "<Video ID>",
+    "starterCode": "def job_schedule(jobs):\n    # Write your code here\n    pass\n\n\nif __name__ == '__main__':\n    jobs = [(1, 2, 100), (2, 1, 19), (3, 2, 27), (4, 1, 25), (5, 1, 15)]\n    result = job_schedule(jobs)\n    print(result)",
+    "testCase": {
+      "input": [
+        "[(1, 2, 100), (2, 1, 19), (3, 2, 27), (4, 1, 25), (5, 1, 15)]"
+      ],
+      "output": ["125"]
+    }
+  },
+  {
+    "id": "missing-number-in-ap",
+    "title": "Missing Number in AP",
+    "problemStatement": "<Problem Statement>",
+    "constraints": "<Constraints>",
+    "difficulty": "Medium",
+    "category": "Array",
+    "order": 74,
+    "videoId": "<Video ID>",
+    "starterCode": "def missing_in_ap(arr, n):\n    # Write your code here\n    pass\n\n\nif __name__ == '__main__':\n    arr = [2, 4, 8, 10]\n    n = 5\n    result = missing_in_ap(arr, n)\n    print(result)",
+    "testCase": {
+      "input": ["[2, 4, 8, 10]", "5"],
+      "output": ["6"]
+    }
+  },
+  {
+    "id": "smallest-number-with-atleast-n-trailing-zeroes-in-factorial",
+    "title": "Smallest Number with Atleast N Trailing Zeroes in Factorial",
+    "problemStatement": "<Problem Statement>",
+    "constraints": "<Constraints>",
+    "difficulty": "Medium",
+    "category": "Array",
+    "order": 75,
+    "videoId": "<Video ID>",
+    "starterCode": "def smallest_number_trailing_zeroes(n, c):\n    # Write your code here\n    pass\n\n\nif __name__ == '__main__':\n    n = 3\n    c = 4\n    result = smallest_number_trailing_zeroes(n, c)\n    print(result)",
+    "testCase": {
+      "input": ["3", "4"],
+      "output": ["12"]
+    }
+  },
+  {
+    "id": "painters-partition-problem",
+    "title": "Painters Partition Problem",
+    "problemStatement": "<Problem Statement>",
+    "constraints": "<Constraints>",
+    "difficulty": "Hard",
+    "category": "Array",
+    "order": 76,
+    "videoId": "<Video ID>",
+    "starterCode": "def painters_partition(boards, n, k):\n    # Write your code here\n    pass\n\n\nif __name__ == '__main__':\n    boards = [10, 20, 60, 50, 30, 40]\n    n = 6\n    k = 3\n    result = painters_partition(boards, n, k)\n    print(result)",
+    "testCase": {
+      "input": ["[10, 20, 60, 50, 30, 40]", "6", "3"],
+      "output": ["90"]
+    }
+  },
+  {
+    "id": "roti-prata-spoj",
+    "title": "ROTI-Prata SPOJ",
+    "problemStatement": "<Problem Statement>",
+    "constraints": "<Constraints>",
+    "difficulty": "Hard",
+    "category": "Array",
+    "order": 77,
+    "videoId": "<Video ID>",
+    "starterCode": "def min_time(pratas, rank, n):\n    # Write your code here\n    pass\n\n\nif __name__ == '__main__':\n    pratas = 10\n    rank = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]\n    n = 5\n    result = min_time(pratas, rank, n)\n    print(result)",
+    "testCase": {
+      "input": ["10", "[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]", "5"],
+      "output": ["15"]
+    }
+  },
+  {
+    "id": "doublehelix-spoj",
+    "title": "DoubleHelix SPOJ",
+    "problemStatement": "<Problem Statement>",
+    "constraints": "<Constraints>",
+    "difficulty": "Hard",
+    "category": "Array",
+    "order": 78,
+    "videoId": "<Video ID>",
+    "starterCode": "def max_sum_path(seq1, seq2, m, n):\n    # Write your code here\n    pass\n\n\nif __name__ == '__main__':\n    seq1 = [2, 3, 7, 10, 12, 15, 30, 34]\n    seq2 = [1, 5, 7, 8, 10, 15, 16, 19]\n    m = 8\n    n = 8\n    result = max_sum_path(seq1, seq2, m, n)\n    print(result)",
+    "testCase": {
+      "input": [
+        "[2, 3, 7, 10, 12, 15, 30, 34]",
+        "[1, 5, 7, 8, 10, 15, 16, 19]",
+        "8",
+        "8"
+      ],
+      "output": ["122"]
+    }
+  },
+  {
+    "id": "subset-sums",
+    "title": "Subset Sums",
+    "problemStatement": "<Problem Statement>",
+    "constraints": "<Constraints>",
+    "difficulty": "Medium",
+    "category": "Array",
+    "order": 79,
+    "videoId": "<Video ID>",
+    "starterCode": "def count_subsets(arr, n):\n    # Write your code here\n    pass\n\n\nif __name__ == '__main__':\n    arr = [2, 3, 4, 5]\n    n = 4\n    result = count_subsets(arr, n)\n    print(result)",
+    "testCase": {
+      "input": ["[2, 3, 4, 5]", "4"],
+      "output": ["15"]
+    }
+  },
+  {
+    "id": "find-the-inversion-count",
+    "title": "Find the Inversion Count",
+    "problemStatement": "<Problem Statement>",
+    "constraints": "<Constraints>",
+    "difficulty": "Hard",
+    "category": "Array",
+    "order": 80,
+    "videoId": "<Video ID>",
+    "starterCode": "def count_inversions(arr, n):\n    # Write your code here\n    pass\n\n\nif __name__ == '__main__':\n    arr = [1, 20, 6, 4, 5]\n    n = 5\n    result = count_inversions(arr, n)\n    print(result)",
+    "testCase": {
+      "input": ["[1, 20, 6, 4, 5]", "5"],
+      "output": ["5"]
+    }
+  },
+  {
+    "id": "implement-merge-sort-in-place",
+    "title": "Implement Merge-sort In-place",
+    "problemStatement": "<Problem Statement>",
+    "constraints": "<Constraints>",
+    "difficulty": "Hard",
+    "category": "Array",
+    "order": 81,
+    "videoId": "<Video ID>",
+    "starterCode": "def merge_sort(arr, l, r):\n    # Write your code here\n    pass\n\n\ndef merge(arr, l, m, r):\n    # Write your code here\n    pass\n\n\nif __name__ == '__main__':\n    arr = [12, 11, 13, 5, 6, 7]\n    n = len(arr)\n    merge_sort(arr, 0, n - 1)\n    print('Sorted array is:', arr)",
+    "testCase": {
+      "input": ["[12, 11, 13, 5, 6, 7]", "0", "5"],
+      "output": ["Sorted array is: [5, 6, 7, 11, 12, 13]"]
+    }
+  },
+  {
+    "id": "partitioning-and-sorting-arrays-with-many-repeated-entries",
+    "title": "Partitioning and Sorting Arrays with Many Repeated Entries",
+    "problemStatement": "<Problem Statement>",
+    "constraints": "<Constraints>",
+    "difficulty": "Hard",
+    "category": "Array",
+    "order": 82,
+    "videoId": "<Video ID>",
+    "starterCode": "def dutch_flag_sort(arr):\n    # Write your code here\n    pass\n\n\nif __name__ == '__main__':\n    arr = [1, 2, 2, 2, 1, 1, 0, 0, 1, 2, 1, 0]\n    dutch_flag_sort(arr)\n    print(arr)",
+    "testCase": {
+      "input": ["[1, 2, 2, 2, 1, 1, 0, 0, 1, 2, 1, 0]"],
+      "output": ["[0, 0, 0, 1, 1, 1, 1, 1, 2, 2, 2, 2]"]
+    }
+  }
+]
